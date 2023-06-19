@@ -1,0 +1,132 @@
+<ng-container [ngSwitch]="codeRetour">
+
+
+    <form class="container" *ngSwitchDefault (ngSubmit)="onSubmit()" [formGroup]="formulaireMateriel">
+        <mat-form-field appearance="fill">
+            <mat-label>Type du matériel</mat-label>
+            <input matInput formControlName="type">
+            <mat-error *ngIf="formulaireMateriel.get('type')?.hasError('minlength')">
+                Necessite 3 caractères minimum.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('type')?.hasError('maxlength')">
+                Ne doit pas dépasser 50 caractères.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('type')?.hasError('required')">
+                Type de matériel manquant!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Marque du matériel</mat-label>
+            <input matInput formControlName="marque">
+            <mat-error *ngIf="formulaireMateriel.get('marque')?.hasError('minlength')">
+                Necessite 3 caractères minimum.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('marque')?.hasError('maxlength')">
+                Ne doit pas dépasser 50 caractères.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('marque')?.hasError('required')">
+                Marque manquante!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Modèle du matériel</mat-label>
+            <input matInput formControlName="modele">
+            <mat-error *ngIf="formulaireMateriel.get('modele')?.hasError('minlength')">
+                Necessite 3 caractères minimum.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('modele')?.hasError('maxlength')">
+                Ne doit pas dépasser 50 caractères.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('modele')?.hasError('required')">
+                Modèle manquant!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Référence du matériel</mat-label>
+            <input matInput formControlName="reference">
+            <mat-error *ngIf="formulaireMateriel.get('reference')?.hasError('minlength')">
+                Necessite 3 caractères minimum.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('reference')?.hasError('maxlength')">
+                Ne doit pas dépasser 50 caractères.
+            </mat-error>
+            <mat-error *ngIf="formulaireMateriel.get('reference')?.hasError('required')">
+                Reference manquante!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Date d'acquisition</mat-label>
+            <input matInput [matDatepicker]="date_acquisition" placeholder="Sélectionnez une date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="date_acquisition"></mat-datepicker-toggle>
+            <mat-datepicker #date_acquisition></mat-datepicker>
+            <mat-error *ngIf="formulaireMateriel.get('date_acquisition')?.hasError('required')">
+                Date d'acquisition manquante!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Date de fin de garantie</mat-label>
+            <input matInput [matDatepicker]="date_finGarantie" placeholder="Sélectionnez une date" [min]="minDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="date_finGarantie"></mat-datepicker-toggle>
+            <mat-datepicker #date_finGarantie></mat-datepicker>
+            <mat-error *ngIf="formulaireMateriel.get('date_FinGarantie')?.hasError('required')">
+                Date de fin de garantie manquante!
+            </mat-error>
+        </mat-form-field>
+
+        
+
+        <div *ngIf="idMateriel == null || fichier == null">
+        <div>
+            <input #fileSelector type="file" style="display: none;" (change)="onImageSelectionnee($event)">
+            <button mat-mini-fab type="button" color="primary" (click)="fileSelector.click()">
+                <mat-icon>
+                    <span class="material-symbols-outlined">
+                        attach_file
+                    </span>
+                </mat-icon>
+            </button>
+            <span>{{fichier != null ? fichier.name : "Selectionnez un fichier"}}</span>
+        </div>
+        <div>
+            <button [disabled]="!formulaireMateriel.valid" mat-raised-button type="submit" color="primary">{{ idMateriel ==
+                null?
+                "Ajouter" : "Modifier"}}</button>
+            <a routerLink="/materiel" mat-raised-button color="warn" value="annuler">Annuler</a>
+        </div>
+    </div>
+    </form>
+
+    <ng-template *ngSwitchCase="404">
+        <h2>Erreur inconnue</h2>
+        <p> Contactez l'administrateur en lui communiquant cette erreur </p>
+        <pre>
+    {{messageErreur}}
+  </pre>
+        <a mat-raised-button color="primary">
+            ENVOYER UN RAPPORT D'ERREUR
+        </a>
+        <p> Cet utilisateur n'éxiste pas ( il a peut être été supprimé )</p>
+        <a mat-raised-button color="accent" routerLink="/accueil">
+            Retour à l'accueil
+        </a>
+    </ng-template>
+    <ng-template *ngSwitchCase="500">
+        <h2>Erreur inconnue</h2>
+        <p> Contactez l'administrateur en lui communiquant cette erreur </p>
+        <pre>
+    {{messageErreur}}
+  </pre>
+        <a mat-raised-button color="warn">
+            ENVOYER UN RAPPORT D'ERREUR
+        </a>
+        <p> Cet utilisateur n'éxiste pas ( il a peut être été supprimé )</p>
+        <a mat-raised-button color="accent" routerLink="/accueil">
+            Retour à l'accueil
+        </a>
+    </ng-template>
+</ng-container>

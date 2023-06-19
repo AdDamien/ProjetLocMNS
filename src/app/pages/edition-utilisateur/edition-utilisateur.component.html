@@ -1,0 +1,95 @@
+<ng-container [ngSwitch]="codeRetour">
+
+
+  <form class="container" *ngSwitchDefault (ngSubmit)="onSubmit()" [formGroup]="formulaire">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="prenom">
+      <mat-error *ngIf="formulaire.get('prenom')?.hasError('minlength')">Prenom trop court , necessite 3 caractères
+        minimum</mat-error>
+      <mat-error *ngIf="formulaire.get('prenom')?.hasError('maxlength')">Prenom trop long , ne doit pas dépasser 20
+        caractères</mat-error>
+      <mat-error *ngIf="formulaire.get('prenom')?.hasError('required')">Prenom manquant!</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="nom">
+      <mat-error *ngIf="formulaire.get('nom')?.hasError('minlength')">
+        Nom trop court , necessite 3 caractères minimum
+      </mat-error>
+      <mat-error *ngIf="formulaire.get('nom')?.hasError('maxlength')">
+        Nom trop long , ne doit pas dépasser 20 caractères
+      </mat-error>
+      <mat-error *ngIf="formulaire.get('nom')?.hasError('required')">
+        Nom manquant!
+      </mat-error>
+
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Telephone</mat-label>
+      <input matInput formControlName="telephone">
+      <mat-error *ngIf="formulaire.get('telephone')?.hasError('maxlength')">Numéro de téléphone trop long , ne doit pas
+        dépasser 20 caractères</mat-error>
+      <mat-error *ngIf="formulaire.get('telephone')?.hasError('required')">Numero de téléphone manquant!</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="formulaire.get('email')?.hasError('email')">Email Invalide</mat-error>
+      <mat-error *ngIf="formulaire.get('email')?.hasError('required')">Email manquant!</mat-error>
+    </mat-form-field>
+
+    
+    <!--<div *ngIf="idUtilisateur == null || fichier == null">-->
+    <div>
+      <input #fileSelector type="file" style="display: none;" (change)="onImageSelectionnee($event)">
+      <button mat-mini-fab type="button" color="primary" (click)="fileSelector.click()">
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            attach_file
+          </span>
+        </mat-icon>
+      </button>
+      <span>{{fichier != null ? fichier.name : "Aucune fichier selectionné"}}</span>
+    </div>
+    <div>
+      <button [disabled]="!formulaire.valid" mat-raised-button type="submit" color="primary">{{ idUtilisateur == null?
+        "Ajouter" : "Modifier"}}</button>
+      <a routerLink="/accueil" mat-raised-button color="warn" value="annuler">Annuler</a>
+    </div>
+    <div *ngIf="formulaire.errors" class="global-errors">
+      <mat-error>{{ formulaire.errors | json }}</mat-error>
+    </div>
+  </form>
+  <ng-template *ngSwitchCase="404">
+    <h2>Erreur inconnue</h2>
+    <p> Contactez l'administrateur en lui communiquant cette erreur </p>
+    <pre>
+    {{messageErreur}}
+  </pre>
+    <a mat-raised-button color="primary">
+      ENVOYER UN RAPPORT D'ERREUR
+    </a>
+    <p> Cet utilisateur n'éxiste pas ( il a peut être été supprimé )</p>
+    <a mat-raised-button color="accent" routerLink="/accueil">
+      Retour à l'accueil
+    </a>
+  </ng-template>
+  <ng-template *ngSwitchCase="500">
+    <h2>Erreur inconnue</h2>
+    <p> Contactez l'administrateur en lui communiquant cette erreur </p>
+    <pre>
+    {{messageErreur}}
+  </pre>
+    <a mat-raised-button color="warn">
+      ENVOYER UN RAPPORT D'ERREUR
+    </a>
+    <p> Cet utilisateur n'éxiste pas ( il a peut être été supprimé )</p>
+    <a mat-raised-button color="accent" routerLink="/accueil">
+      Retour à l'accueil
+    </a>
+  </ng-template>
+</ng-container>

@@ -1,0 +1,14 @@
+<div>
+  <h1>Import Utilisateur</h1>
+  <div>
+    
+    <input type="file" (change)="onImportDocument($event)"
+       
+      accept=".csv, application/vnd.oasis.opendocument.spreadsheet, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+    <button (click)="importDocument()">Importer</button>
+  </div>
+  <div *ngIf="statusMessage">
+    <p>{{ statusMessage }}</p>
+  </div>
+</div>
+

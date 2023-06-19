@@ -1,0 +1,13 @@
+<h1>Profil</h1>
+
+<div *ngIf="utilisateurConnecte">
+  <p> Identité : {{ utilisateur | fullname }}</p>
+  <p> Email: {{ utilisateur.email }}</p>
+  <!-- Affichez d'autres informations de l'utilisateur selon vos besoins -->
+</div>
+
+<div *ngIf="!utilisateurConnecte">
+  <p>Chargement des informations du profil...</p>
+</div>
+
+

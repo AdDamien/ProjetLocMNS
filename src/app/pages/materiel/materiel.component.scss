@@ -1,0 +1,72 @@
+.custom-button {
+  color: #ffffff !important;
+   background-color: #ff0000 !important;
+  
+}
+
+.custom-button-two {
+  color: #ffffff!important;
+   background-color: orangered !important;
+  
+
+}
+
+.materiel-card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.materiel-card-item {
+  flex: 0 0 50%;
+  /* Pour afficher deux cartes par ligne, ajustez cette valeur en fonction de vos besoins */
+}
+.image-materiel {
+  width: 150px;
+  height: 150px;
+}
+
+.custom-status-bar {
+  display: flex;
+  height: 24px;
+  width: 150px;
+  border-radius: 5px;
+  border: 4px solid gray;
+  overflow: hidden;
+
+
+}
+
+.custom-status-bar .bar-section {
+  height: 100%;
+
+}
+
+.tres-bon {
+  background-color: green;
+  width: 100%;
+}
+
+.bon {
+  background-color: yellow;
+  width: 75%;
+}
+
+.correct {
+  background-color: orange;
+  width: 50%;
+}
+
+.mauvais {
+  background-color: red;
+  width: 25%;
+}
+
+.hors-service {
+  background-color: white;
+  width: 100%;
+}
+
+.en-reparation {
+  background-color: black;
+  width: 100%;
+}

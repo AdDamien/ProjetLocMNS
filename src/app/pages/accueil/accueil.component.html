@@ -1,0 +1,72 @@
+<h2> Accueil </h2>
+{{dateMaintenant | date :'dd/MM/yy'}}
+<div class="container"></div>
+<a mat-raised-button class="custom-button" *ngIf="isAdmin" routerLink="/ajout-utilisateur">Ajouter un utilisateur</a>
+<a mat-raised-button class="custom-button" *ngIf="isAdmin" routerLink="/import-utilisateurs">Importer un fichier contenant une liste d'utilisateur</a>
+<div class="row">
+  <div *ngFor="let utilisateur of listeUtilisateur" class="col-6">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>{{ utilisateur | fullname }}</mat-card-title>
+        <mat-card-subtitle>
+          <span *ngIf="utilisateur.role.id == 1" class="titre-administrator">{{ utilisateur.role.nom }}</span>
+          <span *ngIf="utilisateur.role.id == 2" class="titre-gestionnaire">{{ utilisateur.role.nom }}</span>
+          <span *ngIf="utilisateur.role.id == 3" class="titre-utilisateur">{{ utilisateur.role.nom }}</span>
+          <i>
+            Membre depuis le :
+            {{utilisateur.dateCreation | date :"dd/MM/yyyy" }}
+            Mis a jour le :
+            {{utilisateur.dateMiseAJour | date :"dd/MM/yyyy" }}
+          </i>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="image-utilisateur" [attr.src]="utilisateur.imageProfil" alt="Image de l'utilisateur">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+        <div class='periodeSelector'>
+          <div class="datedebut">
+            <ejs-datetimepicker 
+            placeholder="choisissez une date et heure de début"
+            locale ='fr'
+            [format]="'dd MMMM yyyy HH:mm'"
+            [min]="minDate" 
+            [max]="maxDate"
+            [(ngModel)]="dateValue"
+            (ngModelChange)="updateDateSelecteurDeux()">
+
+            </ejs-datetimepicker>
+            <div class="datefin">
+              <ejs-datetimepicker 
+              placeholder="choisissez une date et heure de fin"
+            [format]="'dd MMMM yyyy HH:mm'"
+            [min]="minDate2" 
+            [max]="maxDate"
+            
+              >
+
+              </ejs-datetimepicker>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button *ngIf="isAdmin" color="primary">
+          <a *ngIf="isAdmin" [routerLink]="['/edit-utilisateur',utilisateur.id]" mat-raised-button color="primary">
+            <mat-icon fontIcon="edit"></mat-icon>Editer</a></button>
+
+        <button *ngIf="isAdmin" (click)="onDeleteUser(utilisateur.id)" mat-raised-button color="warn">Supprimer
+          <mat-icon fontIcon="delete"></mat-icon>
+        </button>
+        <button mat-raised-button color="accent">Ajouter
+          <mat-icon fontIcon="add"></mat-icon>
+        </button>
+        <button type="button" class="btn btn-info">Info</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
