@@ -16,24 +16,24 @@ export class ImageService {
   chargementImageProfil(utilisateur: Utilisateur) {
     if (utilisateur.nomImageProfil != null) {
       this.http
-        .get('http://localhost:8080/image-profil/' + utilisateur.id, { responseType: 'blob' })
-        .subscribe((donneeImage: any) => {
-          utilisateur.imageProfil = this.sanitizer.bypassSecurityTrustUrl(
-            URL.createObjectURL(donneeImage)
-          );
-        });
+        .get(environment.serverurl + /image-profil/' + utilisateur.id, { responseType: 'blob' })
+          .subscribe((donneeImage: any) => {
+            utilisateur.imageProfil = this.sanitizer.bypassSecurityTrustUrl(
+              URL.createObjectURL(donneeImage)
+            );
+          });
     }
   }
 
-  chargementPictureMateriel(materiel:Materiel) {
+  chargementPictureMateriel(materiel: Materiel) {
     if (materiel.nomImageMateriel != null) {
       this.http
-        .get('http://localhost:8080/image-materiel/' + materiel.id, { responseType: 'blob' })
-        .subscribe((donneeImage: any) => {
-          materiel.imageMateriel = this.sanitizer.bypassSecurityTrustUrl(
-            URL.createObjectURL(donneeImage)
-          );
-        });
+        .get(environment.serverurl + '/image-materiel/' + materiel.id, { responseType: 'blob' })
+          .subscribe((donneeImage: any) => {
+            materiel.imageMateriel = this.sanitizer.bypassSecurityTrustUrl(
+              URL.createObjectURL(donneeImage)
+            );
+          });
     }
   }
 }

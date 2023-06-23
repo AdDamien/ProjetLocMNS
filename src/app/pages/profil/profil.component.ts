@@ -14,22 +14,22 @@ import { TokenService } from 'src/app/services/token.service';
 export class ProfilComponent {
 
   utilisateurConnecte: Utilisateur | null = null;
-  utilisateur: any | Utilisateur ;
+  utilisateur: any | Utilisateur;
 
   constructor(
 
-    private http : HttpClient,
+    private http: HttpClient,
     private serviceUtilisateur: UtilisateurService,
     private connexionService: ConnexionService,
-    private tokenService : TokenService
+    private tokenService: TokenService
   ) { }
 
-  
+
 
   ngOnInit(): void {
     let test = this.tokenService.isConnected()
     console.log(test);
-    
+
 
     this.getProfil();
   }
@@ -37,15 +37,15 @@ export class ProfilComponent {
   getProfil(): void {
     const token = localStorage.getItem('token'); // Récupérer le token stocké localement
     console.log(token);
-    
+
     const headers = { 'Authorization': `Bearer ${token}` };
     console.log(headers);
-    
 
-    this.http.get<any>('http://localhost:8080/profil', { headers }).subscribe(
+
+    this.http.get<any>(environment.serverurl + /profil', { headers }).subscribe(
       (response) => {
-        this.utilisateur = response;
-      },
+      this.utilisateur = response;
+    },
       (error) => {
         console.error('Erreur lors de la récupération du profil :', error);
       }

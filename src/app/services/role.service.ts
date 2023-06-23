@@ -8,12 +8,12 @@ import { Observable } from 'rxjs';
 export class RoleService {
 
   constructor
-  (
-    private http: HttpClient,
-  ) { }
+    (
+      private http: HttpClient,
+    ) { }
 
-   public getRole(): Observable<any> {
-    return this.http.get("http://localhost:8080/liste-role")
+  public getRole(): Observable<any> {
+    return this.http.get(environment.serverurl + "/liste-role")
 
 
   }

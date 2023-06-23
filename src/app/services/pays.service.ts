@@ -13,7 +13,7 @@ export class PaysService {
 
   ) { }
   public getPays(): Observable<any> {
-    return this.http.get("http://localhost:8080/liste-pays")
+    return this.http.get(environment.serverurl "+ /liste-pays")
 
 
   }

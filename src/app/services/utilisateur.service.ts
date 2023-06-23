@@ -21,30 +21,30 @@ export class UtilisateurService {
   public getUtilisateurs() {
 
     this.http
-      .get<Utilisateur[]>("http://localhost:8080/utilisateur")
-      .subscribe((utilisateur: Utilisateur[]) => {
-        for (let utilisateurs of utilisateur) {
-          this.imageService.chargementImageProfil(utilisateurs);
+      .get<Utilisateur[]>(environment.serverurl + "/utilisateur")
+        .subscribe((utilisateur: Utilisateur[]) => {
+          for (let utilisateurs of utilisateur) {
+            this.imageService.chargementImageProfil(utilisateurs);
 
-        }
-        this._utilisateur.next(utilisateur);
-      });
+          }
+          this._utilisateur.next(utilisateur);
+        });
   }
 
 
   public deleteUtilisateur(id: number): Observable<any> {
     return this.http
-      .delete("http://localhost:8080/admin/utilisateur/" + id)
+      .delete(environment.serverurl + "/admin/utilisateur / " + id)
   }
 
   public editionUtilisateur(formData: FormData): Observable<any> {
     return this.http
-      .post('http://localhost:8080/admin/utilisateur', formData)
+      .post(environment.serverurl + '/admin/utilisateur', formData)
   }
 
   public getUtilisateur(id: number): Observable<any> {
     return this.http
-      .get('http://localhost:8080/utilisateur/' + id)
+      .get(environment.serverurl + '/utilisateur/' + id)
 
   }
 
