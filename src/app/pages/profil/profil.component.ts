@@ -4,6 +4,7 @@ import { ConnexionService } from 'src/app/services/connexion.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { HttpClient } from '@angular/common/http';
 import { TokenService } from 'src/app/services/token.service';
+import { environment } from 'src/environments/environment.development';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class ProfilComponent {
 
   utilisateurConnecte: Utilisateur | null = null;
   utilisateur: any | Utilisateur;
+  dateMaintenant: Date = new Date();
 
   constructor(
 
@@ -27,24 +29,18 @@ export class ProfilComponent {
 
 
   ngOnInit(): void {
-    let test = this.tokenService.isConnected()
-    console.log(test);
-
-
     this.getProfil();
   }
 
   getProfil(): void {
-    const token = localStorage.getItem('token'); // Récupérer le token stocké localement
-    console.log(token);
+    const jwt = localStorage.getItem('jwt'); // Récupérer le jwt stocké localement
+    const headers = { 'Authorization': `Bearer ${jwt}` };
 
-    const headers = { 'Authorization': `Bearer ${token}` };
-    console.log(headers);
-
-
-    this.http.get<any>(environment.serverurl + /profil', { headers }).subscribe(
+    this.http.get<any>(environment.serverUrl + '/profil', { headers }).subscribe(
       (response) => {
       this.utilisateur = response;
+      
+      
     },
       (error) => {
         console.error('Erreur lors de la récupération du profil :', error);
@@ -52,6 +48,3 @@ export class ProfilComponent {
     );
   }
 }
-
-
-// {{ utilisateurConnecte | fullname }} a rajouter dans le html

@@ -26,9 +26,6 @@
         <li class="nav-item" *ngIf="utilisateurConnecte != null">
           <a class="nav-link" style="cursor : pointer;" (click)="onDeconnexion()">DECONNEXION</a>
         </li>
-        <li class="nav-item" *ngIf="utilisateurConnecte != null">
-          <a class="nav-link" style="cursor: pointer;">{{ utilisateurConnecte | fullname }}</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['profil']">PROFIL</a>
         </li>

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Utilisateur } from '../models/utilisateur';
 import { ImageService } from './image.service';
+import { environment } from 'src/environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,30 +23,30 @@ export class UtilisateurService {
   public getUtilisateurs() {
 
     this.http
-      .get<Utilisateur[]>(environment.serverurl + "/utilisateur")
-        .subscribe((utilisateur: Utilisateur[]) => {
-          for (let utilisateurs of utilisateur) {
-            this.imageService.chargementImageProfil(utilisateurs);
+      .get<Utilisateur[]>(environment.serverUrl + "/utilisateur")
+      .subscribe((utilisateur: Utilisateur[]) => {
+        for (let utilisateurs of utilisateur) {
+          this.imageService.chargementImageProfil(utilisateurs);
 
-          }
-          this._utilisateur.next(utilisateur);
-        });
+        }
+        this._utilisateur.next(utilisateur);
+      });
   }
 
 
   public deleteUtilisateur(id: number): Observable<any> {
     return this.http
-      .delete(environment.serverurl + "/admin/utilisateur / " + id)
+      .delete(environment.serverUrl + "/admin/utilisateur/ " + id)
   }
 
   public editionUtilisateur(formData: FormData): Observable<any> {
     return this.http
-      .post(environment.serverurl + '/admin/utilisateur', formData)
+      .post(environment.serverUrl + '/admin/utilisateur', formData)
   }
 
   public getUtilisateur(id: number): Observable<any> {
     return this.http
-      .get(environment.serverurl + '/utilisateur/' + id)
+      .get(environment.serverUrl + '/utilisateur/' + id)
 
   }
 

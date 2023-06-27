@@ -38,8 +38,8 @@ export class AccueilComponent {
       utilisateur => this.listeUtilisateur = utilisateur
     );
     this.connexionService._utilisateurConnecte.subscribe(utilisateur => {
-  this.isAdmin = utilisateur?.role.nom == "ROLE_ADMINISTRATEUR" || utilisateur?.role.nom == "ROLE_GESTIONNAIRE";
-});
+    this.isAdmin = utilisateur?.role.nom == "ROLE_ADMINISTRATEUR" || utilisateur?.role.nom == "ROLE_GESTIONNAIRE";
+    });
     this.refresh();
   }
 

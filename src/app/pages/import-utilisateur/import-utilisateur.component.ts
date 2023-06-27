@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-import-utilisateur',
@@ -19,11 +20,11 @@ export class ImportUtilisateurComponent {
       const formData: FormData = new FormData();
       formData.append('fichier', this.documents);
 
-      this.http.post<any[]>(environment.serverurl + '/import-utilisateurs', formData).subscribe(
+      this.http.post<any[]>(environment.serverUrl+"/import-utilisateurs", formData).subscribe(
         (response: any[]) => {
-        this.statusMessage = 'Fichier importé avec succès.';
-        console.log(response);
-      },
+          this.statusMessage = 'Fichier importé avec succès.';
+          console.log(response);
+        },
         (error: any) => {
           this.statusMessage = 'Une erreur s\'est produite lors de l\'importation du fichier.';
           console.error(error);

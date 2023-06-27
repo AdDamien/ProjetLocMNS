@@ -8,7 +8,7 @@ RUN npm run build --prod
 
 # Étape 2, basée sur Nginx pour avoir uniquement le contenu compilé pour servir avec Nginx
 FROM nginx:1.17.1-alpine
-COPY --from=build /app/dist/CDA2023 /usr/share/nginx/html
+COPY --from=build /app/dist/ProjetLocMNS /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
 
 # COPY --from=build /app/dist/"nom_application" /usr/share/nginx/html remplacer nom application par son nom ici

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Utilisateur } from '../models/utilisateur';
 import { Materiel } from '../models/materiel';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class ImageService {
   chargementImageProfil(utilisateur: Utilisateur) {
     if (utilisateur.nomImageProfil != null) {
       this.http
-        .get(environment.serverurl + /image-profil/' + utilisateur.id, { responseType: 'blob' })
+        .get(environment.serverUrl + '/image-profil/' + utilisateur.id, { responseType: 'blob' })
           .subscribe((donneeImage: any) => {
             utilisateur.imageProfil = this.sanitizer.bypassSecurityTrustUrl(
               URL.createObjectURL(donneeImage)
@@ -28,7 +29,7 @@ export class ImageService {
   chargementPictureMateriel(materiel: Materiel) {
     if (materiel.nomImageMateriel != null) {
       this.http
-        .get(environment.serverurl + '/image-materiel/' + materiel.id, { responseType: 'blob' })
+        .get(environment.serverUrl + '/image-materiel/' + materiel.id, { responseType: 'blob' })
           .subscribe((donneeImage: any) => {
             materiel.imageMateriel = this.sanitizer.bypassSecurityTrustUrl(
               URL.createObjectURL(donneeImage)

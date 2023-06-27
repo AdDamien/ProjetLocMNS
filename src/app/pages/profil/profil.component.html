@@ -1,13 +1,101 @@
-<h1>Profil</h1>
+{{dateMaintenant | date :'dd/MM/yy'}}<br><br>
 
-<div *ngIf="utilisateurConnecte">
-  <p> Identité : {{ utilisateur | fullname }}</p>
-  <p> Email: {{ utilisateur.email }}</p>
-  <!-- Affichez d'autres informations de l'utilisateur selon vos besoins -->
-</div>
+<h1>BIENVENUE SUR VOTRE PAGE PROFIL : {{ utilisateur | fullname }}</h1><br>
 
-<div *ngIf="!utilisateurConnecte">
-  <p>Chargement des informations du profil...</p>
-</div>
+<img mat-card-image class="image-utilisateur" [attr.src]="utilisateur.imageProfil" alt="Image de l'utilisateur">
+
+<h2>Vos informations personnelles</h2><br>
+
+<div class="container"></div>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <p> 
+        <mat-card-title>VOTRE IDENTITE : {{ utilisateur | fullname }}</mat-card-title>
+        <br>
+          <i>
+            Membre depuis le :
+            {{utilisateur.dateCreation | date :"dd/MM/yyyy" }}<br><br>
+            Mis a jour le :
+            {{utilisateur.dateMiseAJour | date :"dd/MM/yyyy" }}<br><br>
+            Votre adresse Email :
+            {{ utilisateur.email }}<br><br>
+            Votre numéro de téléphone : 
+            {{ utilisateur.telephone }} <br><br>
+            Vos derniers prêts : 
+            <br><br>
+            Liste des matériels emprunté :
+            <br><br>
+          </i>
+        <div>
+    </div>
+</mat-card-header>
+      
+      
+
+<!-- <div class="container"></div>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <p> 
+        <mat-card-title>{{ utilisateur | fullname }}</mat-card-title>
+        
+          <i>
+            Membre depuis le :
+            {{utilisateur.dateCreation | date :"dd/MM/yyyy" }}
+            Mis a jour le :
+            {{utilisateur.dateMiseAJour | date :"dd/MM/yyyy" }}
+          </i>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="image-utilisateur" [attr.src]="utilisateur.imageProfil" alt="Image de l'utilisateur">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+        <div class='periodeSelector'>
+          <div class="datedebut">
+            <ejs-datetimepicker 
+            placeholder="choisissez une date et heure de début"
+            locale ='fr'
+            [format]="'dd MMMM yyyy HH:mm'"
+            [min]="minDate" 
+            [max]="maxDate"
+            [(ngModel)]="dateValue"
+            (ngModelChange)="updateDateSelecteurDeux()">
+
+            </ejs-datetimepicker>
+            <div class="datefin">
+              <ejs-datetimepicker 
+              placeholder="choisissez une date et heure de fin"
+            [format]="'dd MMMM yyyy HH:mm'"
+            [min]="minDate2" 
+            [max]="maxDate"
+            
+              >
+
+              </ejs-datetimepicker>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button *ngIf="isAdmin" color="primary">
+          <a *ngIf="isAdmin" [routerLink]="['/edit-utilisateur',utilisateur.id]" mat-raised-button color="primary">
+            <mat-icon fontIcon="edit"></mat-icon>Editer</a></button>
+
+        <button *ngIf="isAdmin" (click)="onDeleteUser(utilisateur.id)" mat-raised-button color="warn">Supprimer
+          <mat-icon fontIcon="delete"></mat-icon>
+        </button>
+        <button mat-raised-button color="accent">Ajouter
+          <mat-icon fontIcon="add"></mat-icon>
+        </button>
+        <button type="button" class="btn btn-info">Info</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div> -->
 
 

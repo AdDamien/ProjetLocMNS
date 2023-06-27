@@ -47,7 +47,7 @@ title = 'ProjetLocMNS';
       require('cldr-data/main/de/ca-gregorian.json'),
       require('cldr-data/main/de/numbers.json'),
       require('cldr-data/main/de/timeZoneNames.json'),
-      require('cldr-data/supplemental/weekdata.json')
+      require('cldr-data/supplemental/weekData.json')
 
     );
     L10n.load({ 
