@@ -6,6 +6,10 @@
     Ajouter un Materiel
     <mat-icon fontIcon="add"></mat-icon>
   </a>
+  <a mat-raised-button color="primary" *ngIf="isAdmin" routerLink="/import-materiels">
+    Importer un fichier contenant une liste de materiel
+    <mat-icon>download_file</mat-icon>
+  </a>
   
   <a mat-raised-button class="custom-button-two" *ngIf="isAdmin" routerLink="/edition-materiel">
     Ajouter une Categorie

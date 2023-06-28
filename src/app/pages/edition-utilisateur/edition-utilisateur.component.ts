@@ -13,8 +13,7 @@ import { Pays } from 'src/app/models/pays';
   styleUrls: ['./edition-utilisateur.component.scss']
 })
 export class EditionUtilisateurComponent {
-  formulaire: FormGroup = this.formBuilder.group({
-    // les validators sont un tableau de validation donc il faut mettre des crochet 
+  formulaire: FormGroup = this.formBuilder.group({ 
     prenom: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],      // prenom correspond au nom de la propriété coté spring
     nom: ["", [Validators.required,Validators.minLength(3), Validators.maxLength(20)]],
     email: ["", [Validators.email, Validators.required]],

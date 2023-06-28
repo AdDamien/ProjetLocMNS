@@ -12,6 +12,8 @@ import { EditionMaterielComponent } from './pages/edition-materiel/edition-mater
 import { PretComponent } from './pages/pret/pret.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { ImportUtilisateurComponent } from './pages/import-utilisateur/import-utilisateur.component';
+import { CGUComponent } from './pages/cgu/cgu.component';
+
 
 const routes: Routes = [
   { path: "accueil", component: AccueilComponent, canActivate: [UserGuard] },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: "materiel", component: MaterielComponent },
   { path: "pret", component: PretComponent },
   { path: "profil", component: ProfilComponent },
+  { path: "CGU", component: CGUComponent },
   { path: "import-utilisateurs", component: ImportUtilisateurComponent },
   { path: "ajout-materiel", component: EditionMaterielComponent, canActivate: [AdminGuard] },
   { path: "edit-materiel/:id", component: EditionMaterielComponent, canActivate: [AdminGuard] },
@@ -27,8 +30,6 @@ const routes: Routes = [
   { path: "", redirectTo: "accueil", pathMatch: "full" },
   { path: 'droits-insuffisants', component: Page403Component },
   { path: "**", component: Page404Component }
-
-
 ];
 
 

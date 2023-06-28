@@ -1,7 +1,39 @@
 <div>
-  <h1>Import Utilisateur</h1>
+  <h1>Importer votre liste d'utilisateurs</h1>
+  <br>
   <div>
-    
+    <p>
+      <strong>Mode d'emploi pour l'importation d'utilisateurs :</strong>
+    </p>
+    <ol>
+      <li>Assurez-vous d'avoir un fichier Excel (.xlsx) contenant les informations des utilisateurs à importer. Le fichier doit avoir les colonnes suivantes dans la première feuille :</li>
+      <ul>
+        <li>Colonne A : Prénom</li>
+        <li>Colonne B : Nom</li>
+        <li>Colonne C : Adresse e-mail</li>
+        <li>Colonne D : Numéro de téléphone</li>
+      </ul>
+      <li>Cliquez sur le bouton "Parcourir" pour sélectionner le fichier Excel contenant les utilisateurs à importer.</li>
+      <li>Assurez-vous que le fichier sélectionné respecte les contraintes suivantes :</li>
+      <ul>
+        <li>Le fichier ne doit pas être vide.</li>
+        <li>Le fichier doit avoir l'extension ".xlsx".</li>
+      </ul>
+      <li>Si le fichier ne respecte pas ces contraintes, vous verrez un message d'erreur indiquant que le fichier est manquant ou que l'extension de fichier est incorrecte. Veuillez corriger ces problèmes et réessayez.</li>
+      <li>Une fois que vous avez sélectionné le fichier correct, l'application commencera à traiter les utilisateurs du fichier.</li>
+      <li>Pendant le traitement, l'application effectuera les vérifications suivantes pour chaque utilisateur :</li>
+      <ul>
+        <li>Les champs "Prénom", "Nom", "Adresse e-mail" et "Numéro de téléphone" doivent être renseignés. Si l'un de ces champs est manquant, l'utilisateur sera ignoré.</li>
+        <li>L'adresse e-mail doit être au format valide. Si l'adresse e-mail est invalide, l'utilisateur sera ignoré.</li>
+      </ul>
+      <li>Si un utilisateur existe déjà avec la même adresse e-mail dans la base de données, il sera ignoré et ne sera pas importé à nouveau.</li>
+      <li>Le compteur affichera le nombre d'utilisateurs ajoutés une fois l'importation terminé cela peut prendre du temps en fonction de la quantité d'utilisateur importé</li>
+      <li>Pour chaque utilisateur valide, un mot de passe aléatoire sera généré et envoyé par e-mail à l'utilisateur. Le mot de passe sera également stocké dans la base de données de manière sécurisée.</li>
+      <li>Si des erreurs se produisent pendant le processus d'import, vous verrez un message d'erreur correspondant à la nature de l'erreur. Veuillez prendre note de ces erreurs et corrigez les problèmes dans le fichier d'origine avant de réessayer.</li>
+    </ol>
+    <p>
+      <strong>Note :</strong> Si vous rencontrez des problèmes techniques ou des erreurs inattendues pendant le processus d'import, veuillez contacter l'assistance technique pour obtenir de l'aide supplémentaire.
+    </p>
     <input type="file" (change)="onImportDocument($event)"
        
       accept=".csv, application/vnd.oasis.opendocument.spreadsheet, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
@@ -9,6 +41,8 @@
   </div>
   <div *ngIf="statusMessage">
     <p>{{ statusMessage }}</p>
+    <p>Compteur d'utilisateurs importés : {{ compteurUtilisateurImporter }}</p>
+
   </div>
-</div>
+
 

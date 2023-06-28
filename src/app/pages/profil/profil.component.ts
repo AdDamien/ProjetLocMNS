@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment.development';
 export class ProfilComponent {
 
   utilisateurConnecte: Utilisateur | null = null;
-  utilisateur: any | Utilisateur;
+  utilisateur : any | Utilisateur;
   dateMaintenant: Date = new Date();
 
   constructor(
@@ -38,8 +38,7 @@ export class ProfilComponent {
 
     this.http.get<any>(environment.serverUrl + '/profil', { headers }).subscribe(
       (response) => {
-      this.utilisateur = response;
-      
+      this.utilisateur = response ?? {};
       
     },
       (error) => {

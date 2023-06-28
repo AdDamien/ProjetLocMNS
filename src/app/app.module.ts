@@ -31,6 +31,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { LOCALE_ID } from '@angular/core';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { ImportUtilisateurComponent } from './pages/import-utilisateur/import-utilisateur.component';
+import { CGUComponent } from './pages/cgu/cgu.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { ImportUtilisateurComponent } from './pages/import-utilisateur/import-ut
     StatutPipe,
     ProfilComponent,
     ImportUtilisateurComponent,
+    CGUComponent,
   ],
   imports: [
     BrowserModule,
